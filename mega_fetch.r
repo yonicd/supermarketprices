@@ -1,67 +1,72 @@
 library(rvest);library(XML);library(plyr);library(dplyr)
-url.base="http://publishprice.mega.co.il"
-mega.files=html(paste(url.base,format(Sys.Date(),"%Y%m%d"),sep="/"))%>%html_nodes("a")%>%html_text()
+
+#Organize URLs
+  url.base="http://publishprice.mega.co.il"
+  mega.files=html(paste(url.base,format(Sys.Date(),"%Y%m%d"),sep="/"))%>%html_nodes("a")%>%html_text()
+  
+  mega.files=mdply(c("Price","Promo","Store"),.fun = function(x){
+                 df.out=data.frame(type=x,url=paste(url.base,format(Sys.Date(),"%Y%m%d"),
+                   mega.files[grepl(".gz",mega.files)&grepl(x,mega.files)],sep="/"))})[,-1]
+  
+  mega.files$url=as.character(mega.files$url)
 
 
-mega.files=mdply(c("Price","Promo","Store"),.fun = function(x){
-               df.out=data.frame(type=x,url=paste(url.base,format(Sys.Date(),"%Y%m%d"),
-                 mega.files[grepl(".gz",mega.files)&grepl(x,mega.files)],sep="/"))})[,-1]
+#Store List
+  mega.store.files=mega.files%>%filter(type=="Store")
+  options(warn=-1)
+  mega.stores=ddply(mega.store.files,.(type,url),.fun = function(x){
+    temp <- tempfile()
+    download.file(x$url,temp,quiet = T)
+    mega.out=xmlToDataFrame(xmlParse(readLines(gzfile(temp),encoding="UTF-8")))[-1,-1]
+    unlink(temp)
+    return(mega.out)})%>%mutate_each(funs(iconv(.,"UTF-8")))
+  options(warn=0)
 
-mega.files$url=as.character(mega.files$url)
-
-mega.store.files=mega.files%>%filter(type=="Store")
-
-options(warn=-1)
-mega.stores=ddply(mega.store.files,.(type,url),.fun = function(x){
-  temp <- tempfile()
-  download.file(x$url,temp,quiet = T)
-  mega.out=xmlToDataFrame(xmlParse(readLines(gzfile(temp),encoding="UTF-8")))[-1,-1]
-  unlink(temp)
-  return(mega.out)})%>%mutate_each(funs(iconv(.,"UTF-8")))
-options(warn=0)
-
-
-mega.price.files=mega.files%>%filter(type=="Price")
-
-options(warn=-1)
-mega.prices=ddply(mega.price.files,.(type,url),.fun = function(x){
-  temp <- tempfile()
-  download.file(x$url,temp,quiet = T)
-  mega.out=xmlToDataFrame(xmlParse(readLines(gzfile(temp),encoding="UTF-8")))[-1,-1]
-  unlink(temp)
-  return(mega.out)},.progress = "text")%>%mutate_each(funs(iconv(.,"UTF-8")))
-options(warn=0)
-
-names(mega.prices)[c(3:6)]=names(mega.stores)[c(2:6)]
-
-mega.prices=left_join(mega.prices,mega.stores%>%select(-c(type,url)),by=names(mega.stores)[c(1:4)])
+#Prices
+  mega.price.files=mega.files%>%filter(type=="Price")
+  options(warn=-1)
+  mega.prices=ddply(mega.price.files,.(type,url),.fun = function(x){
+    temp <- tempfile()
+    download.file(x$url,temp,quiet = T)
+    mega.out=xmlToDataFrame(xmlParse(readLines(gzfile(temp),encoding="UTF-8")))[-1,-1]
+    unlink(temp)
+    return(mega.out)},.progress = "text")%>%mutate_each(funs(iconv(.,"UTF-8")))
+  options(warn=0)
+  
+  names(mega.prices)[c(3:6)]=names(mega.stores)[c(2:6)]
+  mega.prices=left_join(mega.prices,mega.stores%>%select(-c(type,url)),by=names(mega.stores)[c(1:4)])
 
 
-#Promo files(still working)
-mega.promo.files=mega.files%>%filter(type=="Promo")%>%slice(c(1:5))
-options(warn=-1)
-mega.promo=ddply(mega.promo.files,.(type,url),.fun = function(x){
-  temp <- tempfile()
-  download.file(x$url,temp,quiet = T)
-  doc=xmlInternalTreeParse(readLines(gzfile(temp),encoding="UTF-8"),options=HUGE)
-  promo.items=xmlToDataFrame(nodes=getNodeSet(doc,"/Promotions/Promotion/PromotionItems"))
-  promo.desc=xmlToDataFrame(nodes=getNodeSet(doc,"/Promotions/Promotion/Promotion"))
-  header=getNodeSet(doc,"/Promotions/*[not(self::Promotion)]")
-  headerdf=as.data.frame(as.list(setNames(xmlSApply(header,xmlValue),xmlSApply(header,xmlName))))
-  mega.out=merge(headerdf,promo.items)
-  unlink(temp)
-  return(mega.out)},.progress = "text")%>%mutate_each(funs(iconv(.,"UTF-8")))%>%select(-Header)
-options(warn=0)
-
-
-
-promo.items=xmlToDataFrame(nodes=getNodeSet(doc,"/Promotions/Promotion/PromotionItems"))
-promo.clubs=xmlToDataFrame(nodes=getNodeSet(doc,"/Promotions/Clubs/PromotionItems"))
-
-temp=getNodeSet(doc,"/Promotions/Promotion/*[not(self::PromotionItems)]")
-tempdf=data.frame(value=iconv(unlist(xmlSApply(temp,xmlValue)),"UTF-8"),name=unlist(xmlSApply(temp,xmlName)))%>%arrange(name)
-tempdf$id=rep(seq(1,nrow(tempdf)/length(unique(tempdf$name))),length(unique(tempdf$name)))
-tempdf=tempdf%>%spread(name, value)
-
-mega.promo.main=merge(headerdf,promo.items)
-
+#Promotions
+  mega.promo.files=mega.files%>%filter(type=="Promo")%>%slice(c(1:3))
+  options(warn=-1)
+  mega.promo=ddply(mega.promo.files,.(type,url),.fun = function(x){
+    temp <- tempfile()
+    download.file(x$url,temp,quiet = T)
+    doc=xmlInternalTreeParse(readLines(gzfile(temp),encoding="UTF-8"),options=HUGE)
+    promo.items=xmlToDataFrame(nodes=getNodeSet(doc,"/Promotions/Promotion/PromotionItems"))
+    promo.desc=xmlToDataFrame(nodes=getNodeSet(doc,"/Promotions/Promotion/Promotion"))
+    header=getNodeSet(doc,"/Promotions/*[not(self::Promotion)]")
+    headerdf=as.data.frame(as.list(setNames(xmlSApply(header,xmlValue),xmlSApply(header,xmlName))))%>%select(-Header)
+    mega.promo.main=merge(headerdf,promo.items)
+    
+    promo.info=getNodeSet(doc,"/Promotions/Promotion/*[not(self::PromotionItems)]")
+    promo.info.df=data.frame(value=iconv(unlist(xmlSApply(promo.info,xmlValue)),"UTF-8"),
+                             name=unlist(xmlSApply(promo.info,xmlName)))%>%arrange(name)
+    promo.info.df$id=rep(seq(1,nrow(promo.info.df)/length(unique(promo.info.df$name))),length(unique(promo.info.df$name)))
+    promo.info.df=promo.info.df%>%spread(name, value)%>%select(-id)
+    
+    promo.size=NULL
+    for(i in 1:nrow(promo.info.df)) promo.size=c(promo.size,sum(xmlSApply(
+      getNodeSet(doc,paste0("/Promotions/Promotion[",i,"]/PromotionItems")),
+      length)))
+    promo.size=data.frame(PromotionId=xmlSApply(getNodeSet(doc,"/Promotions/Promotion/PromotionId"),xmlValue),size=promo.size)
+    mega.promo.main$PromotionId=as.character(rep(promo.size$PromotionId,promo.size$size))
+    mega.promo.main=left_join(mega.promo.main,promo.info.df,by=c("PromotionId"))
+    
+    unlink(temp)
+    return(mega.promo.main)},.progress = "text")
+  options(warn=0)
+  
+  mega.full.day=list(stores=mega.stores,prices=mega.prices,promotions=mega.promo)
+  
