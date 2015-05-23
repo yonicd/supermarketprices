@@ -7,7 +7,7 @@
 #use example xml files in the git repo.
 
 #Stores
-shufersal.doc=xmlParse("Stores7290027600007-000-201505220201.xml")
+shufersal.doc=xmlParse("shufersal/Stores7290027600007-000-201505220201.xml")
 header=getNodeSet(shufersal.doc,"/asx:abap/asx:values/*[not(self::STORES)]")
 headerdf=as.data.frame(as.list(setNames(xmlSApply(header,xmlValue),xmlSApply(header,xmlName))))
 shufersal.stores=xmlToDataFrame(getNodeSet(shufersal.doc,"/asx:abap/asx:values/STORES/STORE"))
@@ -15,7 +15,7 @@ shufersal.stores=merge(headerdf,shufersal.stores)
 rm(list=ls(pattern = "header"))
 
 #Prices
-shufersal.doc=xmlParse("PriceFull7290027600007-001-201505220341.xml")
+shufersal.doc=xmlParse("shufersal/PriceFull7290027600007-001-201505220341.xml")
 header=getNodeSet(shufersal.doc,"/root/*[not(self::Items)]")
 headerdf=as.data.frame(as.list(setNames(xmlSApply(header,xmlValue),xmlSApply(header,xmlName))))
 shufersal.prices=xmlToDataFrame(getNodeSet(shufersal.doc,"/root/Items/Item"))
@@ -23,7 +23,7 @@ shufersal.prices=merge(headerdf,shufersal.prices)
 rm(list=ls(pattern = "header"))
 
 #Promotions
-shufersal.doc=xmlParse("PromoFull7290027600007-001-201505220341.xml")
+shufersal.doc=xmlParse("shufersal/PromoFull7290027600007-001-201505220341.xml")
 promo.items.s=xmlToDataFrame(nodes=getNodeSet(shufersal.doc,"/root/Promotions/Promotion/PromotionItems/Item"))
 header.s=getNodeSet(shufersal.doc,"/root/*[not(self::Promotions)]")
 headerdf.s=as.data.frame(as.list(setNames(xmlSApply(header.s,xmlValue),xmlSApply(header.s,xmlName))))
