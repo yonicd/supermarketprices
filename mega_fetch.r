@@ -4,11 +4,10 @@ library(rvest);library(XML);library(stringr);library(plyr);library(dplyr);
   url.base="http://publishprice.mega.co.il"
   mega.files=html(paste(url.base,format(Sys.Date(),"%Y%m%d"),sep="/"))%>%html_nodes("a")%>%html_text()
   
-  mega.files=mdply(c("Price","Promo","Store"),.fun = function(x){
+  mega.files=mdply(c("Price","PriceFull","Promo","PromoFull","Store"),.fun = function(x){
                  df.out=data.frame(type=x,url=paste(url.base,format(Sys.Date(),"%Y%m%d"),
                    mega.files[grepl(".gz",mega.files)&grepl(x,mega.files)],sep="/"))})%>%
-    select(-X1)%>%
-    mutate(url=as.character(url),Full=ifelse(grepl("Full",url),1,0))
+    select(-X1)%>%mutate(url=as.character(url))
 
 #Store List
   mega.store.files=mega.files%>%filter(type=="Store")

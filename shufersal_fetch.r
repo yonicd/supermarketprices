@@ -1,10 +1,28 @@
-url.base="http://prices.shufersal.co.il/"
+sapply_pb <- function(X, FUN, ...){
+  env <- environment()
+  pb_Total <- length(X)
+  counter <- 0
+  pb <- txtProgressBar(min = 0, max = pb_Total, style = 3)
+  
+  wrapper <- function(...){
+    curVal <- get("counter", envir = env)
+    assign("counter", curVal +1 ,envir=env)
+    setTxtProgressBar(get("pb", envir=env), curVal +1)
+    FUN(...)
+  }
+  res <- sapply(X, wrapper, ...)
+  close(pb)
+  res}
 
-shufersal.files=html(url.base)%>%html_nodes("a")%>%html_attr("href")
-shufersal.files=mdply(c("Price"),.fun = function(x){
+url.base="http://prices.shufersal.co.il/FileObject/UpdateCategory?catID=0&storeId=0&page="
+
+max.page=as.numeric(gsub("[^1-9]","",html(paste0(url.base,1))%>%html_nodes(xpath="//div[@id='gridContainer']/table/tfoot/tr/td/a[6]")%>%html_attr("href")))
+
+shufersal.files=unique(unlist(sapply_pb(c(1:max.page),function(i){html(paste0(url.base,i))%>%html_nodes("a")%>%html_attr("href")})))
+shufersal.files=shufersal.files[grepl("http",shufersal.files)]
+shufersal.files=mdply(c("Price","PriceFull","Promo","PromoFull","Store"),.fun = function(x){
   df.out=data.frame(type=x,url=shufersal.files[grepl(".gz",shufersal.files)&grepl(x,shufersal.files)])})%>%
-  select(-X1)%>%
-  mutate(url=as.character(url),Full=ifelse(grepl("Full",url),1,0))
+  select(-X1)%>%mutate(url=as.character(url))
 
 #Stores
 # shufersal.url="http://pricesprodpublic.blob.core.windows.net/stores/Stores7290027600007-000-201505240201.gz?sv=2014-02-14&sr=b&sig=nRDnNmBf5oAls1CmRCzau0%2Fp2%2FAdRbG0cW0zRKyMiCo%3D&se=2015-05-24T04%3A00%3A13Z&sp=r"
@@ -20,7 +38,7 @@ rm(list=ls(pattern = "header"))
 #unlink(temp)
 
 #Prices
-shufersal.price.files=shufersal.files%>%filter(type=="Price"&Full==0)
+shufersal.price.files=shufersal.files%>%filter(type=="PriceFull")
 options(warn=-1)
 shufersal.prices=ddply(shufersal.price.files,.(type,url),.fun = function(x){
 temp <- tempfile()
@@ -36,7 +54,7 @@ return(shufersal.prices)
 options(warn=0)
 
 #Promotions
-shufersal.promo.files=shufersal.files%>%filter(type=="Promo"&Full==0)
+shufersal.promo.files=shufersal.files%>%filter(type=="PromoFull")
 options(warn=-1)
 shufersal.promo=ddply(shufersal.promo.files,.(type,url),.fun = function(x){
 temp <- tempfile()
