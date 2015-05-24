@@ -1,5 +1,12 @@
 # Israel Supermarket Chain Data 
-Read daily supermarket data in all Israel chain stores from GZ wrapped XML to data.frames.
+Last week a new law went into affect forcing all the major Israel Supermarket Chains to publish all prices and promotions so consumers can compare prices and lower prices through transparency. The full info (Google translated from Hebrew) of the law can be found [here](https://goo.gl/nan0Is)
+
+The files instead of being in csv format were given to the public in nonuniform gzipped xml files. To say the chains did not act in good faith would be an understatement. The idea behind such a bad formatting scheme is that the government wanted to have private companies make apps so the consumers can access the data through a third party.
+
+Instead R can be used to read the data and have the public actually look at the raw data in data.frames or csv exports
+
+The Layout
+
 
 For now Mega and Shufersal have been coded
   - Use mega_fetch.r to read Mega data 
