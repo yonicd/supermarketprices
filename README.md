@@ -1,5 +1,5 @@
 # Israel Supermarket Chain Data 
-Read daily suprmarket data in all israel chain stores from GZ wrapped XML to data.frames.
+Read daily supermarket data in all Israel chain stores from GZ wrapped XML to data.frames.
 
 For now Mega and Shufersal have been coded
   - Use mega_fetch.r to read Mega data 
