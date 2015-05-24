@@ -1,29 +1,48 @@
-#zipfile is corrupt when downloading through R and not manually
-#shufersal.url='http://pricesprodpublic.blob.core.windows.net/price/Price7290027600007-001-201505220240.gz?sv=2014-02-14&sr=b&sig=98CWk2qVi%2BmzLgve5b81n1NUEFX8k0NfsbYwiXTZA4E%3D&se=2015-05-22T16%3A12%3A11Z&sp=r'
-#temp <- tempfile()
-#download.file(shufersal.url,temp,quiet = T)
-#shufersal.docdoc=xmlInternalTreeParse(readLines(gzfile(temp),encoding="UTF-8"),options=HUGE)
+url.base="http://prices.shufersal.co.il/"
 
-#use example xml files in the git repo.
+shufersal.files=html(url.base)%>%html_nodes("a")%>%html_attr("href")
+shufersal.files=mdply(c("Price"),.fun = function(x){
+  df.out=data.frame(type=x,url=shufersal.files[grepl(".gz",shufersal.files)&grepl(x,shufersal.files)])})%>%
+  select(-X1)%>%
+  mutate(url=as.character(url),Full=ifelse(grepl("Full",url),1,0))
 
 #Stores
-shufersal.doc=xmlParse("shufersal/Stores7290027600007-000-201505220201.xml")
+# shufersal.url="http://pricesprodpublic.blob.core.windows.net/stores/Stores7290027600007-000-201505240201.gz?sv=2014-02-14&sr=b&sig=nRDnNmBf5oAls1CmRCzau0%2Fp2%2FAdRbG0cW0zRKyMiCo%3D&se=2015-05-24T04%3A00%3A13Z&sp=r"
+# temp <- tempfile()
+# download.file(shufersal.url,temp,quiet = T,mode="wb")
+# shufersal.doc=xmlParse(c(readLines(gzfile(temp),encoding = "UTF-8"),"</root>"))
+shufersal.doc=xmlParse("https://github.com/yonicd/supermarketprices/raw/master/shufersal/Stores7290027600007-000-201505240201.xml")
 header=getNodeSet(shufersal.doc,"/asx:abap/asx:values/*[not(self::STORES)]")
 headerdf=as.data.frame(as.list(setNames(xmlSApply(header,xmlValue),xmlSApply(header,xmlName))))
 shufersal.stores=xmlToDataFrame(getNodeSet(shufersal.doc,"/asx:abap/asx:values/STORES/STORE"))
 shufersal.stores=merge(headerdf,shufersal.stores)
 rm(list=ls(pattern = "header"))
+#unlink(temp)
 
 #Prices
-shufersal.doc=xmlParse("shufersal/PriceFull7290027600007-001-201505220341.xml")
+shufersal.price.files=shufersal.files%>%filter(type=="Price"&Full==0)
+options(warn=-1)
+shufersal.prices=ddply(shufersal.price.files,.(type,url),.fun = function(x){
+temp <- tempfile()
+download.file(x$url,temp,quiet = T,mode="wb")
+shufersal.doc=xmlParse(c(readLines(gzfile(temp),encoding = "UTF-8"),"</root>"))
 header=getNodeSet(shufersal.doc,"/root/*[not(self::Items)]")
 headerdf=as.data.frame(as.list(setNames(xmlSApply(header,xmlValue),xmlSApply(header,xmlName))))
 shufersal.prices=xmlToDataFrame(getNodeSet(shufersal.doc,"/root/Items/Item"))
 shufersal.prices=merge(headerdf,shufersal.prices)
-rm(list=ls(pattern = "header"))
+unlink(temp)
+return(shufersal.prices)
+},.progress = "text")%>%mutate_each(funs(iconv(.,"UTF-8")))
+options(warn=0)
 
 #Promotions
-shufersal.doc=xmlParse("shufersal/PromoFull7290027600007-001-201505220341.xml")
+shufersal.promo.files=shufersal.files%>%filter(type=="Promo"&Full==0)
+options(warn=-1)
+shufersal.promo=ddply(shufersal.promo.files,.(type,url),.fun = function(x){
+temp <- tempfile()
+download.file(x$url,temp,quiet = T,mode="wb")
+shufersal.doc=xmlParse(c(readLines(gzfile(temp),encoding = "UTF-8"),"</root>"))
+#shufersal.doc=xmlParse("shufersal/PromoFull7290027600007-001-201505220341.xml")
 promo.items.s=xmlToDataFrame(nodes=getNodeSet(shufersal.doc,"/root/Promotions/Promotion/PromotionItems/Item"))
 header.s=getNodeSet(shufersal.doc,"/root/*[not(self::Promotions)]")
 headerdf.s=as.data.frame(as.list(setNames(xmlSApply(header.s,xmlValue),xmlSApply(header.s,xmlName))))
@@ -45,7 +64,9 @@ for(i in 1:nrow(promo.info.df.s)) promo.size.s=c(promo.size.s,sum(xmlSApply(
 promo.size.s=data.frame(PromotionId=xmlSApply(getNodeSet(shufersal.doc,"/root/Promotions/Promotion/PromotionId"),xmlValue),size=promo.size.s)
 shufersal.promo$PromotionId=as.character(rep(promo.size.s$PromotionId,promo.size.s$size))
 shufersal.promo=left_join(shufersal.promo,promo.info.df.s,by=c("PromotionId"))
-
-rm(list=ls(pattern = "promo"))
+unlink(temp)
+return(shufersal.promo)
+},.progress = "text")%>%mutate_each(funs(iconv(.,"UTF-8")))
+options(warn=0)
 
 shufersal.full.day=list(stores=shufersal.stores,prices=shufersal.prices,promotions=shufersal.promo)

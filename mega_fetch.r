@@ -6,10 +6,9 @@ library(rvest);library(XML);library(stringr);library(plyr);library(dplyr);
   
   mega.files=mdply(c("Price","Promo","Store"),.fun = function(x){
                  df.out=data.frame(type=x,url=paste(url.base,format(Sys.Date(),"%Y%m%d"),
-                   mega.files[grepl(".gz",mega.files)&grepl(x,mega.files)],sep="/"))})[,-1]
-  
-  mega.files$url=as.character(mega.files$url)
-mega.files=mega.files%>%mutate(Full=ifelse(grepl("Full",url),1,0))
+                   mega.files[grepl(".gz",mega.files)&grepl(x,mega.files)],sep="/"))})%>%
+    select(-X1)%>%
+    mutate(url=as.character(url),Full=ifelse(grepl("Full",url),1,0))
 
 #Store List
   mega.store.files=mega.files%>%filter(type=="Store")
