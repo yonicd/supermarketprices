@@ -8,7 +8,7 @@ Instead R can be used to read the data and have the public actually look at the 
 The Layout
 
 
-For now Mega and Shufersal have been coded
+For now Mega and Shufersal have been coded (Out of 15)
   - Use mega_fetch.r to read Mega data 
   - Use shufersal_fetch.r to read Shufersal data
   
