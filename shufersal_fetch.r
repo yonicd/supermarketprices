@@ -15,9 +15,7 @@ sapply_pb <- function(X, FUN, ...){
   res}
 
 url.base="http://prices.shufersal.co.il/FileObject/UpdateCategory?catID=0&storeId=0&page="
-
 max.page=as.numeric(gsub("[^1-9]","",html(paste0(url.base,1))%>%html_nodes(xpath="//div[@id='gridContainer']/table/tfoot/tr/td/a[6]")%>%html_attr("href")))
-
 shufersal.files=unique(unlist(sapply_pb(c(1:max.page),function(i){html(paste0(url.base,i))%>%html_nodes("a")%>%html_attr("href")})))
 shufersal.files=shufersal.files[grepl("http",shufersal.files)]
 shufersal.files=mdply(c("Price","PriceFull","Promo","PromoFull","Store"),.fun = function(x){
