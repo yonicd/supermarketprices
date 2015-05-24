@@ -5,8 +5,9 @@ The files instead of being in csv format were given to the public in nonuniform 
 
 Instead R can be used to read the data and have the public actually look at the raw data in data.frames or csv exports
 
-The Layout
+The example file to see the data from one full day of mega can be seen in mega_20150521.rdata
 
+The Layout
 
 For now Mega and Shufersal have been coded (Out of 15)
   - Use mega_fetch.r to read Mega data 
