@@ -5,7 +5,10 @@ The files instead of being in csv format were given to the public in nonuniform 
 
 Instead R can be used to read the data and have the public actually look at the raw data in data.frames or csv exports
 
-The example file to see the data from one full day of mega can be seen in mega_20150521.rdata
+The example files:
+  - mega_20150521.rdata: data from one full day of mega
+  - mega_prices_slice.csv first 1000 rows from full day of prices in csv format
+
 
 The Layout
 
