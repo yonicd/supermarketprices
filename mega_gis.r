@@ -1,4 +1,7 @@
-library(sp);library(RgoogleMaps);library(maptools);library(ggplot2);library(rgdal)
+library(sp);library(RgoogleMaps);
+library(maptools);library(ggplot2);
+library(rgdal);library(dplyr)
+library(plyr)
 
   
 load("stores_mega.rdata")
@@ -45,11 +48,12 @@ isr_points <- sp2tmap(isr_shp_poly)
 names(isr_points) <- c("OBJECTID", "x", "y")
 isr=left_join(isr_points,isr_poly_df,by=c("OBJECTID"))
 
-ggplot(data = isr%>%filter(CITY==5000), aes(x=x, y=y)) +
+x=mega.stores%>%filter(City%in%c("רחובות","תל-אביב"))%>%mutate(CITY=as.numeric(as.character(factor(City,labels=c(8400,5000)))))
+
+ggplot(data = isr%>%filter(CITY%in%c(5000,8400)), aes(x=x, y=y)) +
   geom_polygon(color = "black", fill="white")+
-  scale_fill_discrete(guide=F)+
-  geom_point(data=mega.stores%>%filter(City=="תל-אביב"),
-             aes(x=x,y=y,colour=factor(OBJECTID)))
+  scale_fill_discrete(guide=F)+facet_wrap(~CITY,scales="free")+
+  geom_point(data=x,aes(x=x,y=y))
 
 origin="31.8943287,35.0068778"
 #  paste(mega.stores$lat[1],mega.stores$lon[1],sep=",")
