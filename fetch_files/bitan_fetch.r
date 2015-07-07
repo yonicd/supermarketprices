@@ -25,7 +25,7 @@ bitan.stores=ddply(bitan.store.files,.(type,url),.fun = function(x){
 })
 
 bitan.price.files=bitan.files%>%filter(type=="PriceFull")
-bitan.stores=ddply(bitan.store.files,.(type,url),.fun = function(x){
+bitan.price=ddply(bitan.store.files,.(type,url),.fun = function(x){
   options(warn=-1)
   temp <- tempfile()
   download.file(x$url,temp,quiet = T,mode="wb")

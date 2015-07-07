@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+          <ChainId>7290055755557</ChainId>
+          <Stores>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>001</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>01 עדן פולג נתניה*</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>002</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>02 עדן ראשל``צ*</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>004</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>04 עדן חוצות  המפרץ*</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>005</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>05 עדן אשדוד</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>007</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>07 עדן רמת גן</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>008</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>08 עדן כפר סבא*</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>009</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>09 עדן גן העיר ת``א</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>011</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>11 עדן באר שבע*</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>013</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>13 עדן רמות*</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>030</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>30 עדן במגה רעננה</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>032</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>32 עדן במגה מלחה</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>034</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>34 עדן במגה נשר חיפה</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>036</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>36 עדן במגה רמת החייל</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>038</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>38 עדן שבעת הכוכבים הרצליה</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>039</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>39 עדן במגה מגדלי יו</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>040</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>40 עדן במגה שהם</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>041</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>41 עדן במגה מודיעין</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>042</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>42 עדן במגה יד אליהו</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>043</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>43 עדן במגה אור יהודה</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>044</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>44 עדן במגה רמת השרון</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>045</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>45 עדן במגה קסטרא חיפה</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>046</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>46 עדן במגה חדרה</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>047</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>1</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>47 עדן במגה נווה אמירים</StoreName>
+                        <Address></Address>
+                        <City></City>
+                        <ZipCode></ZipCode>
+                    </Store>
+                    <Store>
+                        <SubChainId>0</SubChainId>
+                        <StoreID>095</StoreID>
+                        <BikoretNo>0</BikoretNo>
+                        <StoreType>2</StoreType>
+                        <ChainName>עדן טבע מרקט</ChainName>
+                        <SubChainName></SubChainName>
+                        <StoreName>95 עדן אתר האינטרנט</StoreName>
+                        <Address>www.edenteva.co.il</Address>
+                        <City></City>
+                        <ZipCode>0</ZipCode>
+                    </Store>
+          </Stores>
+          <LastUpdateDate>2015-06-22 10:45:02</LastUpdateDate>
+</Root>

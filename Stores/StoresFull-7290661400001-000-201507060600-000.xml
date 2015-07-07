@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Store Date="06/07/15" Time="06:00:05">
+  <Branches>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>001</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>1 ב"ש-בית אשל</StoreName>
+      <Address>בית אשל 1</Address>
+      <City>באר שבע</City>
+      <ZIPCode />
+      <LastUpdateDate>22/41/YYYY 08:41:36</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>011</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>11  עין יהב</StoreName>
+      <Address>ד.נ.ערבה 86820</Address>
+      <City>עין יהב</City>
+      <ZIPCode />
+      <LastUpdateDate>22/44/YYYY 08:44:45</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>015</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>15  שכונה ט</StoreName>
+      <Address>שד` ירושלים 10</Address>
+      <City>באר שבע</City>
+      <ZIPCode />
+      <LastUpdateDate>22/47/YYYY 08:47:36</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>020</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>20 להבים</StoreName>
+      <Address>מרכז מסחרי להבים </Address>
+      <City>להבים</City>
+      <ZIPCode />
+      <LastUpdateDate>22/50/YYYY 08:50:52</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>030</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>30 נווה זאב</StoreName>
+      <Address>מאפו 7</Address>
+      <City>באר שבע</City>
+      <ZIPCode />
+      <LastUpdateDate>22/05/YYYY 09:05:38</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>040</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>40 אופקים</StoreName>
+      <Address>יהדות דרום אפריקה 14</Address>
+      <City>אופקים</City>
+      <ZIPCode>87573</ZIPCode>
+      <LastUpdateDate>22/05/YYYY 09:05:27</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>050</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>50 רד"ק</StoreName>
+      <Address>רחבת רד"ק 28</Address>
+      <City>באר שבע</City>
+      <ZIPCode />
+      <LastUpdateDate>22/02/YYYY 09:02:25</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>055</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>55  יד בנימין</StoreName>
+      <Address>יד בנימין </Address>
+      <City>יד בנימין</City>
+      <ZIPCode />
+      <LastUpdateDate>22/20/YYYY 09:20:54</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>060</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>60 דימונה</StoreName>
+      <Address>מרכז פרץ סנטר </Address>
+      <City>דימונה</City>
+      <ZIPCode />
+      <LastUpdateDate>22/05/YYYY 09:05:09</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>065</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>65 קרית אתא</StoreName>
+      <Address>חנקין 1</Address>
+      <City>קרית אתא</City>
+      <ZIPCode>28212</ZIPCode>
+      <LastUpdateDate>22/45/YYYY 09:45:02</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>070</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>70 אורגים</StoreName>
+      <Address>האורגים 7</Address>
+      <City>באר שבע</City>
+      <ZIPCode />
+      <LastUpdateDate>22/09/YYYY 09:09:33</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>071</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>71 קריית מלאכי</StoreName>
+      <Address>צה"ל 1</Address>
+      <City>קרית מלאכי</City>
+      <ZIPCode />
+      <LastUpdateDate>22/26/YYYY 09:26:25</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>072</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>72 אשדוד הפלמ"ח (ג)</StoreName>
+      <Address>הפלמ"ח 20</Address>
+      <City>אשדוד</City>
+      <ZIPCode>77376</ZIPCode>
+      <LastUpdateDate>22/33/YYYY 09:33:38</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>075</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>75 טבריה הדר</StoreName>
+      <Address>יהודה הלוי 113</Address>
+      <City>טבריה</City>
+      <ZIPCode>14246</ZIPCode>
+      <LastUpdateDate>22/37/YYYY 09:37:01</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>076</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>76 צפת</StoreName>
+      <Address>לוחמי הגטאות 1</Address>
+      <City>צפת</City>
+      <ZIPCode>13401</ZIPCode>
+      <LastUpdateDate>22/39/YYYY 09:39:09</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>077</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>77 קרית גת</StoreName>
+      <Address>דרך הדרום 1</Address>
+      <City>קרית גת</City>
+      <ZIPCode>82021</ZIPCode>
+      <LastUpdateDate>22/42/YYYY 09:42:59</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>080</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>80 המשחררים</StoreName>
+      <Address>דרך המשחררים 100</Address>
+      <City>באר שבע</City>
+      <ZIPCode />
+      <LastUpdateDate>22/13/YYYY 09:13:10</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>081</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>81 מבצע עובדה- מצדה</StoreName>
+      <Address>מבצע עובדה 2</Address>
+      <City>באר שבע</City>
+      <ZIPCode />
+      <LastUpdateDate>22/16/YYYY 09:16:00</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>090</StoreID>
+      <BikoretNo />
+      <StoreType>0</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>90 מרלוג-מרכז רשת</StoreName>
+      <Address> </Address>
+      <City />
+      <ZIPCode />
+      <LastUpdateDate>01/00/YYYY 00:00:00</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>091</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>91 זבוטינסקי</StoreName>
+      <Address>ז`בוטינסקי 128</Address>
+      <City>רמת גן</City>
+      <ZIPCode>52602</ZIPCode>
+      <LastUpdateDate>22/23/YYYY 09:23:22</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+    <Branch>
+      <ChainID>7290661400001</ChainID>
+      <SubChainID>001</SubChainID>
+      <StoreID>098</StoreID>
+      <BikoretNo />
+      <StoreType>1</StoreType>
+      <ChainName />
+      <SubChainName />
+      <StoreName>אילת 98</StoreName>
+      <Address>הספן 1</Address>
+      <City>אילת</City>
+      <ZIPCode />
+      <LastUpdateDate>22/18/YYYY 09:18:22</LastUpdateDate>
+      <Latitude />
+      <Longitude />
+    </Branch>
+  </Branches>
+</Store>
