@@ -13,13 +13,26 @@ The example files:
 
 The Layout
 
-For now Mega, Shufersal, Bitan Wines and Eden Teva Market have been coded (4 Out of 19)
+15 Out of 19 chain stores have been coded to retrieve the data and convert them to dataframes
 
-  - Use mega_fetch.r to read Mega data 
-  - Use shufersal_fetch.r to read Shufersal data
-  - Use bitan_fetch.r to read Bitan Wines data 
-  - Use edenteva_fetch.r to read Eden Teva Market data
-  
+|    ChainId    |      ChainName       |
+|:-------------:|:--------------------:|
+| 7290027600007 |        שופרסל        |
+| 7290055755557 |     עדן טבע מרקט     |
+| 7290058140886 | רמי לוי שיווק השקמה  |
+| 7290103152017 |       אושר עד        |
+| 7290492000005 |       Dor Alon       |
+| 7290633800006 |         קואפ         |
+| 7290700100008 |    כל בו חצי חינם    |
+| 7290725900003 | יינות ביתן מרכז הרשת |
+| 7290785400000 |      קשת טעמים       |
+| 7290873900009 |       סופר דוש       |
+| 7290055700007 |       רשת מגה        |
+| 7290058140886 | רמי לוי שיווק השקמה  |
+| 7290058179503 |      מחסני להב       |
+| 7290661400001 |      מחסני השוק      |
+| 7290696200003 |       ויקטורי        |
+
 The code in mega_gis.r is the raw code to create a function in which the user input the distance willing to travel from current geocode and all stores are filtered accordingly.
 
   - Data is read for only those stores
@@ -27,18 +40,3 @@ The code in mega_gis.r is the raw code to create a function in which the user in
   - The gas cost is taken into account as a function of distance from the geocode in the final price (price from transportation auuthority site)
   
 The folder stat_polygon_gis are shp files of the 2008 CBS stat polygons
-
-Some Notes:
-
-  - Only 11 out of 22 chain stores are publishing in accordance with the law thus far.
-    - Mega
-    - Shufersal
-    - Bitan Wines (No Promotions Files)
-    - Eden Teva Market (No Promotions Files)
-    - Co-op Shop
-    - Dor Alon
-    - Machsane HaShuk
-    - Oser Ad
-    - Hatzi Hinam
-    - Super Dosh
-    - Yochananof
