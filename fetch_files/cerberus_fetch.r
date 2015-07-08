@@ -3,7 +3,7 @@ setwd("C:/Users/yoni/Documents/GitHub/supermarketprices/")
 library(plyr);library(dplyr);library(rvest);library(RSelenium);library(tidyr)
 require(RSelenium)
 
-cerebus.stores=c("tivtaam","doralon","osherad","hazihinam","keshet","ramilevi","superdosh")
+cerebus.stores=c("tivtaam","doralon","osherad","hazihinam","keshet","ramilevi","superdosh","yohananof")
 
 
 fprof <- makeFirefoxProfile(list(browser.download.dir = tempdir(),
