@@ -5,6 +5,8 @@ The files instead of being in csv format were given to the public in nonuniform 
 
 Instead R can be used to read the data and have the public actually look at the raw data in data.frames or csv exports
 
+The layout of the tables as set by the Ministry of Economics can be viewed (in hebrew) in the Table Layout Regulations (Hebrew).pdf file.
+
 In the example files folder:
 
   - mega_20150521.rdata: data from one full day of mega
