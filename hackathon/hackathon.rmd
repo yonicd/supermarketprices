@@ -1,0 +1,85 @@
+---
+title: "R Food Retail Hackathon"
+author: "Jonathan Sidi"
+date: "July 28 2015"
+output: html_document
+---
+
+#Mapping the Data
+
+First we load the packages we will use
+```{r,echo=T}
+pkg=c("dplyr","rgdal","maptools","leaflet")
+sapply(pkg,require,quietly = T,character.only = T,warn.conflicts = F)
+```
+
+Next we import the boundaries of the 2008 statistical areas of the Central Bureau of Statistics (CBS)
+```{r,echo=T}
+projstr="+init=epsg:2039 +proj=tmerc +lat_0=31.73439361111111
+        +lon_0=35.20451694444445 +k=1.0000067 +x_0=219529.584
+               +y_0=626907.39 +ellps=GRS80 +towgs84=-48,55,52,0,0,0,0
+               +units=m +no_defs"
+
+bound <- readShapePoly("C:/Users/yoni/Documents/GitHub/supermarketprices/stat_polygon_gis/lamas_statistics08.shp")
+proj4string(bound) <- projstr
+bound_latlng <- spTransform(bound,CRSobj=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
+```
+
+We define the markers on the map for the stores. In this example we the stores in Modiin
+```{r,echo=T}
+
+#Latitude and Longitude
+
+ramilevi=read.csv("C:/Users/yoni/Documents/GitHub/supermarketprices/Stores/ramilevistoressite.csv")
+
+megabul   <- c(31.8904824,34.9625179)
+megacity1 <- c(31.9082851,35.0057508)
+megacity2 <- c(31.8951054,35.0212003)
+megacity3 <-c(31.8857682,35.0230242)
+beitan <- c(31.8962445,35.011487)
+
+#Define colors by factor for the markers
+pal <- colorFactor(c("navy", "red"), domain = c("Mega","Beitan"))
+
+#Define the input dataframe for the leaflet which has information of the lat lon and characteristics of the markers
+df <- sp::SpatialPointsDataFrame(
+    rbind(as.matrix(ramilevi[,c(6,7)]),megabul,megacity1,megacity2,megacity3,beitan),
+    data.frame(type = factor(c(rep("RamiLevi",34),rep("Mega",4),"Beitan"),c("RamiLevi","Mega","Beitan")),
+               size=log(rnorm(39,100,50)+1)*2,
+               label=c(ramilevi$storename,
+                       paste(sep="<br/>","Tomatoe: 2 nis","Cucumber: 1 nis"),
+                       "Nehalim","HaEla","Maccabim","Hahula"),
+               id=factor(c(rep("RamiLevi",34),rep("Mega",4),"Beitan"),c("RamiLevi","Mega","Beitan")))
+    )
+```
+  
+
+Create the leaflet  
+```{r,echo=T}  
+#Import a template for the map (this is blackwhite)
+  MBaccessToken <- "pk.eyJ1IjoiaWJyZWNraGUiLCJhIjoidVNHX1VpRSJ9.9fPQ1A3rdxyCAzPkeYSYEQ"
+  MBurlTemplate <- "https://a.tiles.mapbox.com/v4/ibreckhe.map-z05003mi/{z}/{x}/{y}.png?access_token="
+  MBTemplate <- paste(MBurlTemplate,MBaccessToken,sep="")  
+
+#The syntax of the leaflet is like dplyr, you pipe (%>%) in the layers    
+leaflet(df)  %>% addTiles(MBTemplate)%>% #base map of world
+  setView(lat=31.8986848, lng=35.0097655, zoom = 13)%>% #focus on (lat,lon) coordinates
+  #add layer of statistic area polygon
+   addPolygons(data=bound_latlng,
+               color="blue", #colour of boundary of polygon
+               fillColor="white", #colour inside polygon
+               weight=1, #size of boundary
+               opacity=0.3, #transparency of boundary
+               fillOpacity=0.1)%>% #transparency inside polygon
+  addCircleMarkers(lat=coordinates(df)[,1], #latitude
+                   lng=coordinates(df)[,2], #longitude
+                   popup=~label, #label of popup of the marker
+                   radius = ~size, #size of marker
+                   color = ~pal(type), #colour of marker
+                   stroke = FALSE, #remove outline of marker
+                   fillOpacity = 0.5, #transparency of marker
+                   clusterId = ~id, #define clusters by factor
+                   clusterOptions = markerClusterOptions(), #define cluster options
+                   options=markerOptions(clickable=TRUE) #toggle on clicking of marker for popup
+                   )
+```
