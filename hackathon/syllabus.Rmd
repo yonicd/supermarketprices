@@ -1,0 +1,34 @@
+---
+title: "Syllabus for the Hackathon"
+author: "Jonathan Sidi"
+date: "July 12, 2015"
+output: html_document
+---
+
+The purpose of this meeting is to introduce ourselves to each other, the data and of course R. 
+
+From the response to the sign up form people have filled out thus far there are quiet a few fields interested in attending: statistics, computer science, geography, advertising, and more... 
+
+Each participant will recieve a PDF containing the meta description of the files and a sample of the data retrieved thus far. After we are all on the same page we will split into groups that will have a task to do that serve the overall goal of understanding the data and getting it ready for any future research. 
+
+Syllabus
+
+  - Background to the Project
+    - What is the purpose of the law
+    - How can researchers and public use the data
+    - How to get to the data: Ministry of Economics [homesite](http://www.economy.gov.il/Trade/ConsumerProtection/Pages/PriceTransparencyRegulations.aspx)
+    - Logging into stores sites to retrieve data
+  - Exploring the different file types
+    - Summary PDF [file](https://github.com/yonicd/supermarketprices/raw/master/Table%20Layout%20Regulations%20(Hebrew).pdf) that explains the layout and column data types in each file.
+    - Stores: List of all the stores for a given chain
+    - Prices: Updated Prices for all the Items sold in a given store of a chain
+    - Promotions: Updated Promotions for all the Items sold in a given store of a chain
+  - Getting hands dirty
+    - Recieve sample data to put on personal computer
+    - Creating data.frames from XML files to work on
+    - Implementing some basic queries to get a feel for the files.
+  - Splitting into Groups
+    - Creating heirachies and clusters of items found in the prices files through the descriptions labels
+    - Designing sampling methods to retrieve representative samples from the data (statarea/city/national)
+    - Joining seperate information to chain stores data: Socioeconomic/Deomgraphic/GIS data
+    

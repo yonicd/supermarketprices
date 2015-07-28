@@ -4,34 +4,104 @@ author: "Jonathan Sidi"
 date: "July 28 2015"
 output: html_document
 ---
+#Primer for the Meeting
+We wanted to give a small taste for the people coming to the meeting next week. 
 
-#Mapping the Data
+A reminder of the syllabus
+
+  - Background to the Project
+    - What is the purpose of the law
+    - How can researchers and public use the data
+    - How to get to the data: Ministry of Economics [homesite](http://www.economy.gov.il/Trade/ConsumerProtection/Pages/PriceTransparencyRegulations.aspx)
+    - Logging into stores sites to retrieve data
+  - Exploring the different file types
+    - Summary PDF [file](https://github.com/yonicd/supermarketprices/raw/master/Table%20Layout%20Regulations%20(Hebrew).pdf) that explains the layout and column data types in each file.
+    - Stores: List of all the stores for a given chain
+    - Prices: Updated Prices for all the Items sold in a given store of a chain
+    - Promotions: Updated Promotions for all the Items sold in a given store of a chain
+  - Getting hands dirty
+    - Recieve "sample" data to put on personal computer
+    - Explaining on parsing XML files to data frames in R
+    - Implementing some basic queries with SQLite to get a feel for the files.
+  - Splitting into Groups
+    - Creating heirachies and clusters of items found in the prices files through the descriptions labels
+    - Designing sampling methods to retrieve representative samples from the data (statarea/city/national)
+    - Joining seperate information to chain stores data: Socioeconomic/Deomgraphic/GIS data
+    - Creating Leaflets for data visualization
+
+
+##Retrieving the Prices
+An SQLite database was set up which has all the prices for each chain store that published to the web on 09/07/2015. This database has been archived (roughly 0.5gb archived and 3gb decompressed) and placed on the [r-israel](http://r-israel.com/wp-content/uploads/extra/chain_db.zip) website for open access, we recommend you download it prior to the meeting to save time and bandwidth. The can be accessed by many packages dplyr, RSQlite, DBI. For those already familiar with dplyr then this will be a natural continuation, [this vignette](https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html). For those unfamiliar with dplyr but have SQL experience then RSQlite is your best bet, this is a [tutorial](http://blog.rstudio.org/2014/10/25/rsqlite-1-0-0/) for the package by RStudio.
+
+Anyone who wants the full (15gb) data archive of raw XMLs from 15/6 to 9/7 dont worry there will be copies available for you. 
+
+Here is an example of basic database functions using dplyr and the prices database itself.
+
+```{r}
+library(dplyr,quietly = T,warn.conflicts = F)
+chain_db <- src_sqlite(path = "D:/Prices/Single Day/chain_db.sqlite3", create = F)
+
+#List tables in database
+db_list_tables(chain_db$con)
+
+#The tables are split into data provider groups because of the uniform xml formats within each group, cerebus and nibit give data for 7 and 3 chains respectively. 
+
+nibit=tbl(chain_db, "nibit_prices_tbl") #single day prices for all 3 chains in nibit
+
+nibit%>%glimpse
+
+#Maximum Price in each store
+nibit%>%group_by(ChainID,StoreID)%>%summarise(max(ItemPrice))
+
+#number of items in each store in stock for sale
+nibit.count=nibit%>%select(ChainID,StoreID,ItemCode)%>%distinct%>%count(ChainID,StoreID)
+
+nibit.count
+
+#you will see that even though we are dealing with 3gb of information R is responding fast, this is because you arent actually retrieving the data in with the functions only the outputs.
+
+chains=tbl(chain_db, "chain_list") #small files mapping chain names to chain ids
+chains
+
+left_join(nibit.count,chains,by="chainid") #notice that because dplyr is converting the syntax to sql it is not case sensitive anymore. 
+```
+
+
+##Mapping the Data
 
 First we load the packages we will use
 ```{r,echo=T}
-pkg=c("dplyr","rgdal","maptools","leaflet")
+pkg=c("rgdal","maptools","leaflet")
 sapply(pkg,require,quietly = T,character.only = T,warn.conflicts = F)
 ```
 
 Next we import the boundaries of the 2008 statistical areas of the Central Bureau of Statistics (CBS)
 ```{r,echo=T}
+#technical GIS stuff: this is the string code for Israeli Transverse Mercator (ITM) which is the grid israel uses for mapping.
 projstr="+init=epsg:2039 +proj=tmerc +lat_0=31.73439361111111
         +lon_0=35.20451694444445 +k=1.0000067 +x_0=219529.584
                +y_0=626907.39 +ellps=GRS80 +towgs84=-48,55,52,0,0,0,0
                +units=m +no_defs"
 
+#Read the shp file
 bound <- readShapePoly("C:/Users/yoni/Documents/GitHub/supermarketprices/stat_polygon_gis/lamas_statistics08.shp")
+
+#Project polygons to ITM
 proj4string(bound) <- projstr
+
+#Project it back to LatLon (Google) Mercator for leaflets
 bound_latlng <- spTransform(bound,CRSobj=CRS("+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"))
 ```
 
-We define the markers on the map for the stores. In this example we the stores in Modiin
+We define the markers on the map for the stores. In this example we have all the Rami Levi stores in Israel and some Mega stores in Modiin. The map is centered on Modiin so we can see the example. If you want to see all the Rami Levi Stores Zoom out.
 ```{r,echo=T}
 
 #Latitude and Longitude
 
+#Read position data for Rami Levi Stores
 ramilevi=read.csv("C:/Users/yoni/Documents/GitHub/supermarketprices/Stores/ramilevistoressite.csv")
 
+#Enter manually some stores of mega and beitan wines (modiin area)
 megabul   <- c(31.8904824,34.9625179)
 megacity1 <- c(31.9082851,35.0057508)
 megacity2 <- c(31.8951054,35.0212003)
@@ -39,13 +109,13 @@ megacity3 <-c(31.8857682,35.0230242)
 beitan <- c(31.8962445,35.011487)
 
 #Define colors by factor for the markers
-pal <- colorFactor(c("navy", "red"), domain = c("Mega","Beitan"))
+pal <- colorFactor(c("navy", "red"), domain = c("Rami Levi","Mega","Beitan"))
 
 #Define the input dataframe for the leaflet which has information of the lat lon and characteristics of the markers
 df <- sp::SpatialPointsDataFrame(
     rbind(as.matrix(ramilevi[,c(6,7)]),megabul,megacity1,megacity2,megacity3,beitan),
     data.frame(type = factor(c(rep("RamiLevi",34),rep("Mega",4),"Beitan"),c("RamiLevi","Mega","Beitan")),
-               size=log(rnorm(39,100,50)+1)*2,
+               size=log(rnorm(39,200,20)+1)*2,
                label=c(ramilevi$storename,
                        paste(sep="<br/>","Tomatoe: 2 nis","Cucumber: 1 nis"),
                        "Nehalim","HaEla","Maccabim","Hahula"),
@@ -62,16 +132,15 @@ Create the leaflet
   MBTemplate <- paste(MBurlTemplate,MBaccessToken,sep="")  
 
 #The syntax of the leaflet is like dplyr, you pipe (%>%) in the layers    
-leaflet(df)  %>% addTiles(MBTemplate)%>% #base map of world
-  setView(lat=31.8986848, lng=35.0097655, zoom = 13)%>% #focus on (lat,lon) coordinates
-  #add layer of statistic area polygon
-   addPolygons(data=bound_latlng,
-               color="blue", #colour of boundary of polygon
-               fillColor="white", #colour inside polygon
-               weight=1, #size of boundary
-               opacity=0.3, #transparency of boundary
-               fillOpacity=0.1)%>% #transparency inside polygon
-  addCircleMarkers(lat=coordinates(df)[,1], #latitude
+m=leaflet(df)  %>% addTiles(MBTemplate) #base map of world
+m
+
+#focus on (lat,lon) coordinates
+m=m%>%setView(lat=31.8986848, lng=35.0097655, zoom = 13) 
+m
+
+#Add layer of markers
+m=m%>%addCircleMarkers(lat=coordinates(df)[,1], #latitude
                    lng=coordinates(df)[,2], #longitude
                    popup=~label, #label of popup of the marker
                    radius = ~size, #size of marker
@@ -82,4 +151,14 @@ leaflet(df)  %>% addTiles(MBTemplate)%>% #base map of world
                    clusterOptions = markerClusterOptions(), #define cluster options
                    options=markerOptions(clickable=TRUE) #toggle on clicking of marker for popup
                    )
+m
+
+#add layer of statistic area polygon (blue lines)
+m=m%>%addPolygons(data=bound_latlng,
+               color="blue", #colour of boundary of polygon
+               fillColor="white", #colour inside polygon
+               weight=1, #size of boundary
+               opacity=0.3, #transparency of boundary
+               fillOpacity=0.1) #transparency inside polygon
+m
 ```
