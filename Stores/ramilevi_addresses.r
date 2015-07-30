@@ -31,3 +31,17 @@ out=ddply(link.df%>%slice(-10),.(links),.fun = function(l){
 data.frame(storename=sapply(str_split(rl.stores[str_detect(rl.stores,"\n")],'\n'),'[',1),
 address=sapply(str_split(rl.stores[str_detect(rl.stores,"\n")],'\n'),'[',2))%>%View
 
+
+x1=ldply(x,
+         .fun = function(x0){
+                    x0=x0[!str_trim(x0)%in%c("פרטים נוספים","סניף כתובת","הסניף סגור במוצאי שבת וחג.")]
+                    x0=str_trim(x0)
+                    x0[1]=gsub("סניף",'',x0[1])
+                    if(length(x0)<3){
+                     data.frame(city=x0[1],address=x0[2],stringsAsFactors = F)
+                    }else{
+                      data.frame(city=x0[1],address=paste(x0[c(2,3)],collapse=" "),stringsAsFactors = F)
+                    }
+              }
+         )%>%filter(!is.na(address))
+
