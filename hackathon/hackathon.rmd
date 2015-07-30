@@ -26,8 +26,8 @@ A reminder of the syllabus
   - Splitting into Groups
     - Creating heirachies and clusters of items found in the prices files through the descriptions labels
     - Designing sampling methods to retrieve representative samples from the data (statarea/city/national)
-    - Joining seperate information to chain stores data: Socioeconomic/Deomgraphic/GIS data
-    - Creating Leaflets for data visualization
+    - Joining seperate information to chain stores data: Socioeconomic/Deomgraphic/GIS data. A good GIS R cheatsheet can be found [here](http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/cheatsheet.html).
+    - Creating Leaflets for data visualization. Leaflet R basics can be found [here](http://rstudio.github.io/leaflet/) and leaflet project homepage can be found [here](http://leafletjs.com/examples.html).
 
 
 ##Retrieving the Prices
